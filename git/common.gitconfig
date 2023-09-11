@@ -1,0 +1,23 @@
+[alias]
+    b   = branch
+    br  = branch -v
+    ca  = commit -av
+    cm  = commit -m
+    cam = commit -am
+    ci  = commit -v
+    co  = checkout
+    df  = diff
+    l   = log
+    lp  = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    st  = status
+    p   = push
+    ge	= push origin HEAD:refs/for/master
+    rb  = rebase -i master
+[color]
+    ui = true
+[core]
+    editor = vim
+[diff]
+    tool = vimdiff
+[pull]
+    rebase = true
