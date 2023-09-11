@@ -1,14 +1,14 @@
 # Dotfiles
 
 ## Setup
-Clone into .config
+1. Clone into .config
 
-install
+2. install
 ```
 $ INSTALL
 ```
 
-create a `.gitconfig` file with the folowing:
+3. create a `.gitconfig` file with the folowing:
 ```
 [user]
     name = Aaron Lebahn
