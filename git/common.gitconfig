@@ -21,3 +21,5 @@
     tool = vimdiff
 [pull]
     rebase = true
+[difftool "vimdiff"]
+	cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
