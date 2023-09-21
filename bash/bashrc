@@ -103,6 +103,7 @@ xterm*|rxvt*)
     ;;
 esac
 
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Git branch bash completion
 if [ -f "$HOME/.config/bash/git-completion.bash" ]; then
@@ -117,10 +118,13 @@ alias g='git'
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
   source /usr/share/nvm/init-nvm.sh
 fi
+
 # add STM32CubeProgrammer to PATH if it exists
 if [ -d "$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/" ] ; then
     export PATH=$PATH:$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/
 fi
+
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # Load Angular CLI autocompletion if angular is installed
 if [ -f /usr/lib/node_modules/@angular/cli/bin/ng ]; then
