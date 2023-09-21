@@ -2,4 +2,13 @@
 
 git submodule init
 git submodule update
-ln -s ../../nvim_custom nvim/lua/custom
+if [ ! -L nvim/lua/custom ]; then
+    ln -s ../../nvim_custom nvim/lua/custom
+fi
+
+if [ -f ../.bashrc ] && [ ! -L ../.bashrc ] || [ "$(readlink ../.bashrc)" != ".config/bash/bashrc" ]; then
+    mv ../.bashrc ../.bashrc.bak
+fi
+if [ ! -L ../.bashrc ]; then
+    ln -s .config/bash/bashrc ../.bashrc
+fi
