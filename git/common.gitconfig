@@ -16,10 +16,10 @@
 [color]
     ui = true
 [core]
-    editor = vim
+    editor = nvim
 [diff]
     tool = vimdiff
 [pull]
     rebase = true
 [difftool "vimdiff"]
-	cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
