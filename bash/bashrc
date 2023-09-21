@@ -125,6 +125,7 @@ if [ -d "$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/" ] ; then
 fi
 
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+bind -f $INPUTRC
 
 # Load Angular CLI autocompletion if angular is installed
 if [ -f /usr/lib/node_modules/@angular/cli/bin/ng ]; then
