@@ -104,25 +104,35 @@ xterm*|rxvt*)
 esac
 
 export XDG_CONFIG_HOME="$HOME/.config"
+export BROWSER=/usr/bin/chromium
+export EDITOR=/usr/bin/nvim
 
 # Git branch bash completion
-if [ -f "$HOME/.config/bash/git-completion.bash" ]; then
-  source $HOME/.config/bash/git-completion.bash
-  
-  # Add git completion to aliases
-  __git_complete g __git_main
-fi
+source $HOME/.config/bash/git-completion.bash
+
+# Add git completion to aliases
+__git_complete g __git_main
 
 alias g='git'
+alias vim='nvim'
 
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
   source /usr/share/nvm/init-nvm.sh
 fi
 
-# add STM32CubeProgrammer to PATH if it exists
 if [ -d "$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/" ] ; then
-    export PATH=$PATH:$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/
+  PATH=$PATH:$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/
 fi
+if [ -d "$HOME/bin" ] ; then
+  PATH=$PATH:$HOME/bin
+fi
+if [ -d "$HOME/.idris2/bin" ] ; then
+  PATH=$PATH:$HOME/.idris2/bin
+fi
+if [ -d "$HOME/.cargo/bin" ] ; then
+  PATH=$PATH:$HOME/.cargo/bin
+fi
+export PATH
 
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 bind -f $INPUTRC
@@ -154,4 +164,8 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+  source /usr/share/nvm/init-nvm.sh
 fi
