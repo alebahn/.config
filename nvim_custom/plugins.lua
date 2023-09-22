@@ -12,6 +12,9 @@ local plugins = {
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
+    init = function()
+      vim.g.mkdp_open_to_the_world = 1
+    end,
     ft = "markdown"
   }
 }
