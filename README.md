@@ -3,12 +3,12 @@
 ## Setup
 1. Clone into .config
 
-2. install
+2. Install
     ```
     $ ./INSTALL
     ```
 
-3. create a `.gitconfig` file with the folowing:
+3. Create a `.gitconfig` file with the folowing:
     ```
     [user]
         name = Aaron Lebahn
