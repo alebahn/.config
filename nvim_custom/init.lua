@@ -7,19 +7,21 @@ local function open_nvim_tree(data)
     return
   end
 
-  -- create a new, empty buffer
-  --vim.cmd.enew()
+  local filename = vim.fn.resolve(data.file)
 
-  -- wipe the directory buffer
-  --vim.cmd.bw(data.buf)
-
-  -- change to the directory
-  --vim.cmd.cd(data.file)
+  -- change to directory if it's not
+  -- a subdirectory of the current directory
+  local is_subdir = filename:find(vim.fn.getcwd()) == 1
+  if not is_subdir then
+    vim.cmd.cd(data.file)
+  end
 
   -- open the tree
   local api = require("nvim-tree.api")
   api.tree.open()
-  if (data.file ~= vim.fn.getcwd()) then
+
+  -- Open the folder if the given folder isn't the root
+  if (filename ~= vim.fn.getcwd()) then
     api.node.open.edit()
   end
 end

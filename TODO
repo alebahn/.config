@@ -1,3 +1,2 @@
-Make nvim-tree change directory if given directory is not a subdirectory
 Fix copilot
 Make neovim close nvim-tree if it is last buffer
