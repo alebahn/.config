@@ -11,9 +11,18 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
+        "markdown",
         "vim",
         "lua",
         "c"
+      },
+    },
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      diagnostics = {
+        enable = true
       },
     },
   },
