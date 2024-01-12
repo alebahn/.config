@@ -7,6 +7,10 @@ M.general = {
     ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down"},
     ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up"},
     ["<Leader>mp"] = { "<Plug>MarkdownPreviewToggle", "toggle markdown preview"}
+  },
+  v = {
+    ["J"] = { ":m '>+1<CR>gv=gv"},
+    ["K"] = { ":m '<-2<CR>gv=gv"}
   }
 }
 
