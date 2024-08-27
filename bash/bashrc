@@ -168,3 +168,5 @@ fi
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
   source /usr/share/nvm/init-nvm.sh
 fi
+
+export STM32_PRG_PATH=/home/alebahn/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin

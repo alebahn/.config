@@ -14,7 +14,8 @@ local plugins = {
         "markdown",
         "vim",
         "lua",
-        "c"
+        "c",
+        "vimdoc"
       },
     },
   },
