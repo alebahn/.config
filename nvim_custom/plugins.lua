@@ -14,6 +14,7 @@ local plugins = {
         "markdown",
         "vim",
         "lua",
+        "rust",
         "c",
         "vimdoc"
       },
@@ -46,7 +47,9 @@ local plugins = {
       ensure_installed = {
         "lua-language-server",
         "clangd",
-        "clang-format"
+        "clang-format",
+        "rust-analyzer",
+        "python-lsp-server"
       },
     },
   },
@@ -57,6 +60,7 @@ local plugins = {
     end,
     init = function()
       vim.g.mkdp_open_to_the_world = 1
+      vim.g.mkdp_theme = "light"
     end,
     ft = "markdown"
   },
