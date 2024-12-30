@@ -124,6 +124,9 @@ fi
 if [ -d "$HOME/.idris2/bin" ] ; then
   PATH=$PATH:$HOME/.idris2/bin
 fi
+if [ -d "$HOME/.pack/bin" ] ; then
+  PATH=$PATH:$HOME/.pack/bin
+fi
 if [ -d "$HOME/.cargo/bin" ] ; then
   PATH=$PATH:$HOME/.cargo/bin
 fi
