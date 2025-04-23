@@ -8,11 +8,4 @@
     $ ./INSTALL
     ```
 
-3. Create a `.gitconfig` file with the folowing:
-    ```
-    [user]
-        name = Aaron Lebahn
-        email = {email}
-    ```
-
-4. Optionally, merge existing .bashrc with new bashrc
+3. Optionally, merge existing .bashrc with new bashrc
