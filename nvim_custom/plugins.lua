@@ -92,7 +92,48 @@ local plugins = {
         desc = "Terminate"
       },
     },
+    config = function()
+      local dap = require("dap")
+      dap.adapters.cppdbg = {
+        name = "cppdbg",
+        type = "executable",
+        command = vim.fn.stdpath('data') .. '/mason/bin/OpenDebugAD7',
+        cwd = "${workspaceFolder}",
+      }
+      dap.adapters.gdb = {
+        type = "executable",
+        command = "gdb",
+        args = { "--interpreter=dap", "--eval-command", "seet pretty print on"}
+      }
+    end,
   },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = {
+      -- This line is essential to making automatic installation work
+      -- :exploding-brain
+      handlers = {},
+      automatic_installation = {
+        -- These will be configured by separate plugins.
+        exclude = {
+          "delve",
+          "python",
+        },
+      },
+      -- DAP servers: Mason will be invoked to install these if necessary.
+      ensure_installed = {
+        "cpptools"
+        -- "bash",
+        -- "codelldb",
+        -- "php",
+        -- "python",
+      },
+    },
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "williamboman/mason.nvim",
+    },
+  }
 }
 
 return plugins
