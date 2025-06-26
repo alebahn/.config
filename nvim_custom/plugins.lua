@@ -71,29 +71,13 @@ local plugins = {
     "mfussenegger/nvim-dap",
     lazy = true,
     keys = {
-      {
-        "<leader>db",
-        function() require("dap").toggle_breakpoint() end,
-        desc = "Toggle Breakpoint"
-      },
-
-      {
-        "<leader>dc",
-        function() require("dap").continue() end,
-        desc = "Continue"
-      },
-
-      {
-        "<leader>dC",
-        function() require("dap").run_to_cursor() end,
-        desc = "Run to Cursor"
-      },
-
-      {
-        "<leader>dT",
-        function() require("dap").terminate() end,
-        desc = "Terminate"
-      },
+      { "<leader>db", function() require("dap").toggle_breakpoint() end,  desc = "Toggle Breakpoint" },
+      { "<leader>dc", function() require("dap").continue() end,           desc = "Continue" },
+      { "<leader>dC", function() require("dap").run_to_cursor() end,      desc = "Run to Cursor" },
+      { "<leader>dT", function() require("dap").terminate() end,          desc = "Terminate" },
+      { "<leader>dh", function() require("dap").step_out() end,           desc = "Step Out" },
+      { "<leader>dj", function() require("dap").step_over() end,          desc = "Step Over" },
+      { "<leader>dl", function() require("dap").step_into() end,          desc = "Step Into" },
     },
     config = function()
       local dap = require("dap")
@@ -136,7 +120,37 @@ local plugins = {
       "mfussenegger/nvim-dap",
       "williamboman/mason.nvim",
     },
-  }
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    keys = {
+      {
+        "<leader>du",
+        function()
+          require("dapui").toggle({})
+        end,
+        desc = "Dap UI"
+      },
+    },
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio"
+    },
+    config = function(_, opts)
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup(opts)
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open({})
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function ()
+        dapui.close({})
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close({})
+      end
+    end,
+  },
 }
 
 return plugins
