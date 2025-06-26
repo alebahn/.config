@@ -26,6 +26,9 @@ local plugins = {
       diagnostics = {
         enable = true
       },
+      view = {
+        width = 70
+      },
     },
   },
   {
