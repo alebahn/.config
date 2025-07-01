@@ -1,7 +1,11 @@
 local plugins = {
   {
     "github/copilot.vim",
-    event = "InsertEnter"
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      vim.g.copilot_filetypes = { gitcommit = true }
+    end,
   },
   {
     "christoomey/vim-tmux-navigator",
@@ -151,6 +155,16 @@ local plugins = {
       end
     end,
   },
+  {
+    "mbbill/undotree",
+    keys = {
+      {
+        "<leader>ut",
+        vim.cmd.UndotreeToggle,
+        desc = "Toggle Undo Tree"
+      }
+    }
+  }
 }
 
 return plugins

@@ -28,3 +28,12 @@ end
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 vim.opt.relativenumber = true
+vim.opt.swapfile = false
+if vim.fn.has("persistent_undo") == 1 then
+  local target_path = vim.fn.expand("~/.undodir")
+  if vim.fn.isdirectory(target_path) == 0 then
+    vim.fn.mkdir(target_path, "p", "0700")
+  end
+  vim.opt.undodir = target_path
+  vim.opt.undofile = true
+end
