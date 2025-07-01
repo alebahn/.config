@@ -172,8 +172,8 @@ if [ -f /usr/share/nvm/init-nvm.sh ]; then
   source /usr/share/nvm/init-nvm.sh
 fi
 
-export STM32_PRG_PATH=/home/alebahn/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
+export STM32_PRG_PATH=$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
 
 if [ -z "$SSH_AUTH_SOCK" ]; then
-  export SSH_AUTH_SOCK="~/.1password/ssh-agent.sock"
+  export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 fi
