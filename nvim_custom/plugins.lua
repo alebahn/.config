@@ -1,10 +1,17 @@
 local plugins = {
   {
-    "github/copilot.vim",
+    "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      vim.g.copilot_filetypes = { gitcommit = true }
+      require("copilot").setup({
+        filetypes = {
+          gitcommit = true,
+        },
+        suggestion = {
+          auto_trigger = true,
+        }
+      })
     end,
   },
   {
