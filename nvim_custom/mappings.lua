@@ -6,7 +6,8 @@ M.general = {
     ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right"},
     ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down"},
     ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up"},
-    ["<Leader>mp"] = { "<Plug>MarkdownPreviewToggle", "toggle markdown preview"}
+    ["<Leader>mp"] = { "<Plug>MarkdownPreviewToggle", "toggle markdown preview"},
+    ["<Leader>f*"] = { "<cmd> Telescope grep_string<CR>", "find string in files"},
   },
   v = {
     ["J"] = { ":m '>+1<CR>gv=gv"},

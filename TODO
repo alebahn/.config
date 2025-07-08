@@ -1,3 +1,2 @@
 Git integration (vim-fugitive?)
-Fix copilot
 Make neovim close nvim-tree if it is last buffer

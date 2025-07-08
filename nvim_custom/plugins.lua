@@ -40,6 +40,29 @@ local plugins = {
       view = {
         width = 70
       },
+      git = {
+        enable = true,
+      },
+      renderer = {
+        highlight_opened_files = "name",
+        icons = {
+          glyphs = {
+            git = {
+              unstaged = "",
+              staged = "",
+              unmerged = "",
+              renamed = "➜",
+              untracked = "★",
+              deleted = "",
+              ignored = "◌"
+            }
+          },
+          show = {
+            git = true
+          },
+          git_placement = "after"
+        }
+      },
     },
   },
   {
