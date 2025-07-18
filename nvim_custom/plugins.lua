@@ -32,6 +32,32 @@ local plugins = {
     },
   },
   {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufReadPost",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    keys = {
+      {
+        "<Leader>gf",
+        function()
+          local gs = require("gitsigns")
+          if vim.wo.diff then
+            vim.cmd("silent! bd! gitsigns://")
+            vim.cmd("silent! diffoff!")
+            gs.refresh()
+          else
+            gs.diffthis()
+          end
+        end,
+        desc = "Toggle Gitsigns diffthis",
+      },
+    },
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     opts = {
       diagnostics = {
@@ -127,6 +153,9 @@ local plugins = {
         args = { "--interpreter=dap", "--eval-command", "seet pretty print on"}
       }
     end,
+    dependencies = {
+      "anuvyklack/hydra.nvim",
+    },
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -194,6 +223,27 @@ local plugins = {
         desc = "Toggle Undo Tree"
       }
     }
+  },
+  {
+    "nvimtools/hydra.nvim",
+    config = function()
+      require('hydra')({
+        name = "Dap Hydra",
+        mode = "n",
+        body = "<leader>d",
+        config = {
+          color = "pink",
+        },
+        heads = {
+          { "c", function() require("dap").continue() end,           { desc = "Continue", exit = true } },
+          { "T", function() require("dap").terminate() end,          { desc = "Terminate", exit = true } },
+          { "h", function() require("dap").step_out() end,           { desc = "Step Out" } },
+          { "j", function() require("dap").step_over() end,          { desc = "Step Over" } },
+          { "l", function() require("dap").step_into() end,          { desc = "Step Into" } },
+          { "<Esc>", nil, { exit = true, nowait = true, desc = false } }
+        },
+      })
+    end,
   }
 }
 

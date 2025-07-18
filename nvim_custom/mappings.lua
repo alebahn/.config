@@ -8,7 +8,7 @@ M.general = {
     ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up"},
     ["<Leader>mp"] = { "<Plug>MarkdownPreviewToggle", "toggle markdown preview"},
     ["<Leader>f*"] = { "<cmd> Telescope grep_string<CR>", "find string in files"},
-    ["<Leader>gf"] = { "<cmd> Gitsigns diffthis<CR>", "git diff this file"},
+    ["<Leader>sh"] = { "<cmd> Gitsigns stage_hunk<CR>", "Stage hunk (gitsigns)"},
   },
   v = {
     ["J"] = { ":m '>+1<CR>gv=gv"},
