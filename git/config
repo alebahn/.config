@@ -9,7 +9,12 @@
     df  = diff
     l   = log
     lp  = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    st  = status
+    st = "!git -c color.status=always status | awk 'BEGIN { n=0 } \
+          /^[[:space:]]+(\\033\\[[0-9;]*[mK])*(modified|new file|deleted|renamed|copied):/ { \
+              printf(\"%2d  %s\\n\", ++n, $0); \
+              next \
+          } \
+          { print $0 }'"
     p   = push
     ge	= push origin HEAD:refs/for/master
     rb  = rebase -i master

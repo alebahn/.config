@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+cmd="$1"; shift
+
+#if no command is given, print usage and exit
+if [ -z "$cmd" ]; then
+  echo "Usage: git-indexed.sh <command> [<args>]"
+  echo "Example: git-indexed.sh add 1 2 3"
+  echo "This will run 'git add' on the files indexed by numbers 1, 2, and 3."
+  exit 1
+fi
+
+args=()
+for arg in "$@"; do
+  #if arg is numeric, convert it to a file:
+  if [[ "$arg" =~ ^[0-9]+$ ]]; then
+    args+=("$(git status | awk 'BEGIN{n=0} \
+      /^[[:space:]]+(modified|new file|deleted|renamed|copied):/ { \
+      if(++n=='\"$arg\"') print substr($0,index($0,$2)) }')" )
+  #otherwise, pass it through as is
+  else
+    args+=("$arg")
+  fi
+done
+
+git "$cmd" "${args[@]}"

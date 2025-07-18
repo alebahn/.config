@@ -107,8 +107,10 @@ source $HOME/.config/bash/git-completion.bash
 
 # Add git completion to aliases
 __git_complete g __git_main
+__git_complete gi __git_main
 
 alias g='git'
+alias gi='git indexed'
 alias vim='nvim'
 
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
@@ -129,6 +131,9 @@ if [ -d "$HOME/.pack/bin" ] ; then
 fi
 if [ -d "$HOME/.cargo/bin" ] ; then
   PATH=$PATH:$HOME/.cargo/bin
+fi
+if [ -d "$HOME/.config/git" ] ; then
+  PATH=$PATH:$HOME/.config/git
 fi
 export PATH
 
