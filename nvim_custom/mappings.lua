@@ -9,6 +9,14 @@ M.general = {
     ["<Leader>mp"] = { "<Plug>MarkdownPreviewToggle", "toggle markdown preview"},
     ["<Leader>f*"] = { "<cmd> Telescope grep_string<CR>", "find string in files"},
     ["<Leader>sh"] = { "<cmd> Gitsigns stage_hunk<CR>", "Stage hunk (gitsigns)"},
+    ["<Leader>mt"] = { function()
+      --toggle mouse mode
+      if vim.o.mouse == "" then
+        vim.o.mouse = "a"
+      else
+        vim.o.mouse = ""
+      end
+    end, "toggle mouse mode"},
   },
   v = {
     ["J"] = { ":m '>+1<CR>gv=gv"},

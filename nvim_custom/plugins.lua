@@ -37,6 +37,13 @@ local plugins = {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
+    opts = {
+      enable = true,
+      max_lines = 0, -- Show context for all lines
+      trim_scope = "outer", -- Show context for outer scope
+      mode = "cursor", -- Show context based on cursor position
+      zindex = 20, -- Set z-index for the context window
+    },
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -138,6 +145,8 @@ local plugins = {
       { "<leader>dh", function() require("dap").step_out() end,           desc = "Step Out" },
       { "<leader>dj", function() require("dap").step_over() end,          desc = "Step Over" },
       { "<leader>dl", function() require("dap").step_into() end,          desc = "Step Into" },
+      { "<leader>d<", function() require("dap").up() end,                 desc = "Up Stack Frame" },
+      { "<leader>d>", function() require("dap").down() end,               desc = "Down Stack Frame" },
     },
     config = function()
       local dap = require("dap")
@@ -196,8 +205,15 @@ local plugins = {
       },
     },
     dependencies = {
-      "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio"
+    },
+    opts = {
+      element_mappings = {
+        stacks = {
+          open = "<CR>",
+          expand = "o",
+        }
+      }
     },
     config = function(_, opts)
       local dap = require("dap")
@@ -240,6 +256,8 @@ local plugins = {
           { "h", function() require("dap").step_out() end,           { desc = "Step Out" } },
           { "j", function() require("dap").step_over() end,          { desc = "Step Over" } },
           { "l", function() require("dap").step_into() end,          { desc = "Step Into" } },
+          { "<", function() require("dap").up() end,                 { desc = "Up Stack Frame" } },
+          { ">", function() require("dap").down() end,               { desc = "Down Stack Frame" } },
           { "<Esc>", nil, { exit = true, nowait = true, desc = false } }
         },
       })
