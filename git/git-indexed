@@ -2,6 +2,8 @@
 
 cmd="$1"; shift
 
+# set -x
+
 #if no command is given, print usage and exit
 if [ -z "$cmd" ]; then
   echo "Usage: git-indexed.sh <command> [<args>]"
@@ -10,17 +12,33 @@ if [ -z "$cmd" ]; then
   exit 1
 fi
 
+root_path="$(git rev-parse --show-toplevel)"
+
 args=()
 for arg in "$@"; do
   #if arg is numeric, convert it to a file:
   if [[ "$arg" =~ ^[0-9]+$ ]]; then
-    args+=("$(git status | awk 'BEGIN{n=0} \
-      /^[[:space:]]+(modified|new file|deleted|renamed|copied):/ { \
-      if(++n=='\"$arg\"') print substr($0,index($0,$2)) }')" )
+    file=$(
+      git status --porcelain -z | \
+        awk -v RS='\0' -v arg="$arg" '
+          BEGIN { ns = nu = nt = 0 }
+          /^[MTADRCU]/  { staged[++ns]    = substr($0, 4) }
+          /^.[MTADRCU]/ { unstaged[++nu]  = substr($0, 4) }
+          /^\?\?/       { untracked[++nt] = substr($0, 4) }
+          END {
+            count = 0
+            for (i = 1; i <= ns; i++) { if (++count == arg) { print staged[i]; exit } }
+            for (i = 1; i <= nu; i++) { if (++count == arg) { print unstaged[i]; exit } }
+            for (i = 1; i <= nt; i++) { if (++count == arg) { print untracked[i]; exit } }
+          }'
+        )
+
+    args+=("$root_path/$file")
   #otherwise, pass it through as is
   else
     args+=("$arg")
   fi
 done
 
+# echo "$cmd" "${args[@]}"
 git "$cmd" "${args[@]}"
