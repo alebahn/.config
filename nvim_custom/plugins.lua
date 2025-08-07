@@ -27,7 +27,7 @@ local plugins = {
         "lua",
         "rust",
         "c",
-        "vimdoc"
+        "vimdoc",
       },
     },
   },
@@ -119,7 +119,9 @@ local plugins = {
         "clangd",
         "clang-format",
         "rust-analyzer",
-        "python-lsp-server"
+        "pyright",
+        "mypy",
+        "ruff",
       },
     },
   },

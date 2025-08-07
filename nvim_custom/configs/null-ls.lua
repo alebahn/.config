@@ -1,16 +1,18 @@
 local null_ls = require "null-ls"
 
 local formatting = null_ls.builtins.formatting
-local lint = null_ls.builtins.diagnostics
-
+-- local lint = null_ls.builtins.diagnostics
+--
 local sources = {
   formatting.prettier,
   formatting.stylua,
+  null_ls.builtins.diagnostics.mypy,
+  null_ls.builtins.diagnostics.ruff,
   formatting.clang_format.with({
     extra_args = { "-style=file", },
   }),
-
-  lint.shellcheck,
+--
+--   lint.shellcheck,
 }
 
 null_ls.setup {

@@ -28,7 +28,8 @@ lspconfig.rust_analyzer.setup {
   }
 }
 
-lspconfig.pylsp.setup {
+lspconfig.pyright.setup {
   on_attach = on_attach,
-  capabilities = capabilities
+  capabilities = capabilities,
+  filetypes = {"python"}
 }
