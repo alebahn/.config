@@ -18,7 +18,8 @@ end
 lspconfig.clangd.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = cmd
+  cmd = cmd,
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
 }
 
 lspconfig.rust_analyzer.setup {
@@ -32,4 +33,11 @@ lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = {"python"}
+}
+
+lspconfig.buf.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "proto" },
+  cmd = { "buf", "ls-lsp" },
 }
