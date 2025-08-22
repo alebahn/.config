@@ -13,8 +13,16 @@ M.general = {
       --toggle mouse mode
       if vim.o.mouse == "" then
         vim.o.mouse = "a"
+        vim.o.relativenumber = true
+        vim.o.number = true
+        vim.cmd(":IndentBlanklineEnable")
+        vim.o.signcolumn = "yes"
       else
         vim.o.mouse = ""
+        vim.o.relativenumber = false
+        vim.o.number = false
+        vim.cmd(":IndentBlanklineDisable")
+        vim.o.signcolumn = "no"
       end
     end, "toggle mouse mode"},
   },
