@@ -1,8 +1,9 @@
 local configs = require("plugins.configs.lspconfig")
+-- local configs = vim.lsp.config()
 local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
-local lspconfig = require "lspconfig"
+-- local lspconfig = vim.lsp.config()
 
 local cc = os.getenv("CC")
 local cmd = {"clangd"}
@@ -15,29 +16,35 @@ if (cc) then
   }
 end
 
-lspconfig.clangd.setup {
+vim.lsp.config("clangd", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = cmd,
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
-}
+})
 
-lspconfig.rust_analyzer.setup {
+vim.lsp.config("rust_analyzer", {
   on_attach=on_attach,
   settings = {
     ["rust-analyzer"] = { cargo = { features = { "client", "server" } }, }
   }
-}
+})
 
-lspconfig.pyright.setup {
+vim.lsp.config("pyright", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = {"python"}
-}
+})
 
-lspconfig.buf.setup {
+vim.lsp.config("ruff", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {"python"}
+})
+
+vim.lsp.config("buf", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "proto" },
   cmd = { "buf", "ls-lsp" },
-}
+})
