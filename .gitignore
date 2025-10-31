@@ -20,4 +20,6 @@
 !tmux/*
 tmux/plugins/*
 !tmux/plugins/tpm
+!direnv
+!direnv/*
 
