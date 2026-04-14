@@ -2,13 +2,13 @@
 
 ## Setup
 1. Initiate git repo in .config and sync with this repo:
-```
-cd ~/.config
-git init -b master
-git remote add -f origin git@github.com:alebahn/.config.git
-git reset --mixed origin/master
-git restore .gitignore INSTALL
-```
+    ```
+    cd ~/.config
+    git init -b master
+    git remote add -f origin git@github.com:alebahn/.config.git
+    git reset --mixed origin/master
+    git restore .gitignore INSTALL
+    ```
 
 2. Install
     ```
