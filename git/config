@@ -1,5 +1,6 @@
+# See https://git-scm.com/docs/git-config
+
 [alias]
-    b   = branch
     br  = branch -v
     ca  = commit -av
     cm  = commit -m
@@ -17,16 +18,29 @@
                          } \
                          { print $0 }'; \
                }; f"
-    p   = push
-    ge	= push origin HEAD:refs/for/master
-    rb  = rebase -i master
 [color]
     ui = true
-[core]
-    editor = nvim
+[init]
+    defaultBranch = master
+[push]
+    autoSetupRemote = true   # Automatically set upstream branch on push
 [diff]
-    tool = vimdiff
+    tool = nvimdiff
+    algorithm = histogram    # Clearer diffs on moved/edited lines
+    colorMoved = plain       # Highlight moved blocks in diffs
 [pull]
-    rebase = true
-[difftool "vimdiff"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+    mnemonicPrefix = true    # More intuitive refs in diff output
+    rebase = true 			     # Rebase (instead of merge) on pull
+[commit]
+    verbose = true           # Include diff comment in commit message template
+[column]
+    ui = auto 			         # Output in columns when possible
+[branch]
+    sort = -committerdate    # Sort branches by most recent commit first
+[tag]
+    sort = -version:refname  # Sort version numbers as you would expect
+[rerere]
+    enabled = true           # Record and reuse conflict resolutions
+    autoupdate = true        # Apply stored conflict resolutions automatically
+[mergetool "nvimdif"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w|only'

@@ -1,9 +1,15 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# If not running interactively, don't do anything (leave this at the top of this file)
 
-# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+if [[ -f ~/.local/share/omarchy/default/bash/rc ]]; then
+  source ~/.local/share/omarchy/default/bash/rc
+fi
 
 [[ -f ~/.welcome_screen ]] && . ~/.welcome_screen
 
@@ -98,12 +104,8 @@ xterm*|rxvt*)
     ;;
 esac
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export BROWSER=/usr/bin/chromium
-export EDITOR=/usr/bin/nvim
-
 # Git branch bash completion
-source $HOME/.config/bash/git-completion.bash
+source $HOME/.config/git/git-completion.bash
 
 # Add git completion to aliases
 __git_complete g __git_main
@@ -136,8 +138,6 @@ if [ -d "$HOME/.config/git" ] ; then
   PATH=$PATH:$HOME/.config/git
 fi
 export PATH
-
-export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 switch_to_gi() {
   # only act if the line actually starts with "g "
