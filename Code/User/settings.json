@@ -1,0 +1,88 @@
+{
+    "workbench.colorTheme": "Solarized Dark",
+    "github.copilot.advanced": {
+        "debug.showScores": true,
+    },
+    "editor.codeActionsOnSave": {
+
+        // "source.addMissingImports": "explicit"
+    },
+    "calva.prettyPrintingOptions": {
+        "printEngine": "pprint",
+        "enabled": false,
+        "width": 120,
+        "maxLength": 50
+    },
+    "calva.paredit.defaultKeyMap": "strict",
+    "editor.inlineSuggest.enabled": true,
+    "terminal.integrated.env.linux": {
+        "GIT_EDITOR": "code --wait"
+    },
+    "git.confirmSync": false,
+    "editor.unicodeHighlight.allowedCharacters": {
+        "’": true
+    },
+    "asciidoc.use_kroki": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false
+    },
+    "vim.debug.loggingLevelForConsole": "debug",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "/"],
+            "commands": ["editor.action.commentLine"]
+        },
+        {
+            "before": ["c", "q", "p"],
+            "commands": ["calva.jackIn"]
+        },
+        {
+            "before": ["c", "q", "q"],
+            "commands": ["calva.disconnect"]
+        },
+        {
+            "before": ["c", "p", "r"],
+            "commands": ["calva.loadFile"]
+        },
+        {
+            "before": ["c", "p", "R"],
+            "commands": ["calva.loadNamespace"]
+        },
+        {
+            "before": ["c", "p", "p"],
+            "commands": ["calva.evaluateSelection"]
+        },
+        {
+            "before": ["c", "p", "c"],
+            "commands": ["calva.evaluateCurrentTopLevelForm"]
+        },
+        {
+            "before": ["c", "q", "c"],
+            "commands": ["calva.evalCurrentFormInREPLWindow"]
+        },
+    ],
+    "keyboard.dispatch": "keyCode",
+    "vim.leader": " ",
+    "vim.visualModeKeyBindings": [
+        {
+            "before": ["<leader>", "/"],
+            "commands": ["editor.action.commentLine"]
+        }
+    ],
+    "remote.defaultExtensionsIfInstalledLocally": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "GitHub.vscode-pull-request-github"
+    ],
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "liveServer.settings.host": "192.168.21.201",
+    "docker.extension.enableComposeLanguageServer": false,
+    "editor.lineNumbers": "relative",
+    "chat.viewSessions.orientation": "stacked",
+    "torizon.overwriteHostIp": "172.21.8.46",
+    "host_ip": "172.21.8.46"
+}

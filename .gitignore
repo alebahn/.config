@@ -21,4 +21,7 @@ tmux/plugins/*
 !tmux/plugins/tpm
 !direnv
 !direnv/*
+!Code
+!Code/User
+!Code/User/*
 
