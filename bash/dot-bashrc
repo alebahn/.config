@@ -206,3 +206,7 @@ show_virtual_env() {
 
 export -f show_virtual_env
 PS1='$(show_virtual_env)'$PS1
+
+if [[ -f "$HOME/.local/share/../bin/env" ]]; then
+  . "$HOME/.local/share/../bin/env"
+fi
