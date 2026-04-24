@@ -1,0 +1,1 @@
+/home/alebahn/.config/omarchy/current/theme/neovim.lua

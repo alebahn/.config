@@ -10,9 +10,7 @@
 !git
 !git/*
 !nvim
-!nvim/*
-!nvim_custom
-!nvim_custom/**
+!nvim/**
 !readline
 !readline/*
 !tmux
