@@ -7,3 +7,17 @@ vim.keymap.del("i", "<A-j>")
 vim.keymap.del("i", "<A-k>")
 vim.keymap.del("v", "<A-j>")
 vim.keymap.del("v", "<A-k>")
+
+vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", {
+  desc = "Next buffer",
+})
+
+vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", {
+  desc = "Previous buffer",
+})
+
+vim.keymap.set("n", "<leader>x", function()
+  Snacks.bufdelete()
+end, {
+  desc = "Close Buffer",
+})
