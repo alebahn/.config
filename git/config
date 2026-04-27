@@ -18,6 +18,7 @@
                          } \
                          { print $0 }'; \
                }; f"
+	run = !sh -c 'exec \"$@\"' -
 [color]
     ui = true
 [init]
