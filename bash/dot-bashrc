@@ -243,3 +243,7 @@ PS1='$(show_virtual_env)'$PS1
 if [[ -f "$HOME/.local/share/../bin/env" ]]; then
   . "$HOME/.local/share/../bin/env"
 fi
+
+if command -v mise &> /dev/null; then
+  eval "$(mise activate bash)"
+fi
