@@ -1,3 +1,7 @@
+local function save_hook(action)
+  vim.cmd('silent write')
+end
+
 local plugins = {
   {
     "github/copilot.vim",
@@ -6,6 +10,18 @@ local plugins = {
   {
     "christoomey/vim-tmux-navigator",
     event = "BufEnter"
+  },
+  {
+    'idris-community/idris2-nvim',
+    dependencies = {'neovim/nvim-lspconfig', 'MunifTanjim/nui.nvim'},
+    config = function()
+      require('idris2').setup({
+        autostart_semantic = false,
+        code_action_post_hook = save_hook,
+        use_default_semantic_hl_groups = false
+      })
+    end,
+    ft = "idris2"
   },
   {
     "nvim-treesitter/nvim-treesitter",
