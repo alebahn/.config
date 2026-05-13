@@ -1,5 +1,28 @@
 #!/bin/sh
 
+overwrite_bashrc=0
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --overwrite-bashrc)
+            overwrite_bashrc=1
+            ;;
+        -h|--help)
+            echo "Usage: ./INSTALL [--overwrite-bashrc]"
+            echo
+            echo "  --overwrite-bashrc  Replace an existing non-symlink ~/.bashrc"
+            echo "                      instead of moving it into bash/dot-bashrc."
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1" >&2
+            echo "Usage: ./INSTALL [--overwrite-bashrc]" >&2
+            exit 1
+            ;;
+    esac
+    shift
+done
+
 cd ~/.config/
 
 git submodule init
@@ -9,7 +32,11 @@ if [ ! -L nvim/lua/custom ]; then
 fi
 
 if [ -e "$HOME/.bashrc" ] && [ ! -L "$HOME/.bashrc" ]; then
-    mv "$HOME/.bashrc" "$HOME/.config/bash/dot-bashrc"
+    if [ "$overwrite_bashrc" -eq 1 ]; then
+        rm -f "$HOME/.bashrc"
+    else
+        mv "$HOME/.bashrc" "$HOME/.config/bash/dot-bashrc"
+    fi
 fi
 
 ln -sfn "$HOME/.config/bash/dot-bashrc" "$HOME/.bashrc"

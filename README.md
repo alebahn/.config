@@ -17,5 +17,6 @@
     ```
     $ ./INSTALL
     ```
+    Use `./INSTALL --overwrite-bashrc` to replace an existing non-symlink `~/.bashrc` instead of moving it into `bash/dot-bashrc`.
 
 3. Now check your repository for which files need merged and committed and which ones need restored with `git status`
