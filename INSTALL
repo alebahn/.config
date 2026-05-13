@@ -8,7 +8,11 @@ if [ ! -L nvim/lua/custom ]; then
     ln -s ../../nvim_custom nvim/lua/custom
 fi
 
-stow --dotfiles --adopt bash
+if [ -e "$HOME/.bashrc" ] && [ ! -L "$HOME/.bashrc" ]; then
+    mv "$HOME/.bashrc" "$HOME/.config/bash/dot-bashrc"
+fi
+
+ln -sfn "$HOME/.config/bash/dot-bashrc" "$HOME/.bashrc"
 
 # Check current global git user name
 current_name=$(git config --global user.name)

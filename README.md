@@ -2,7 +2,6 @@
 
 ## Prerequisites
 - git (to checkout/manage this repo)
-- gnu stow (Used to create symlinks for .bashrc)
 
 ## Setup
 1. Initiate git repo in .config and sync with this repo:
