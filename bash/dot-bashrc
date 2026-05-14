@@ -191,14 +191,13 @@ fi
 export STM32_PRG_PATH=$HOME/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
 
 if [ -n "$SSH_AUTH_SOCK" ]; then
-  if ! ssh-add -l >/dev/null 2>&1; then
-    ssh_add_status=$?
-    if [ "$ssh_add_status" -eq 2 ]; then
-      unset SSH_AUTH_SOCK
-      unset SSH_AGENT_PID
-    fi
-    unset ssh_add_status
+  ssh-add -l >/dev/null 2>&1
+  ssh_add_status=$?
+  if [ "$ssh_add_status" -eq 2 ]; then
+    unset SSH_AUTH_SOCK
+    unset SSH_AGENT_PID
   fi
+  unset ssh_add_status
 fi
 
 if [ -z "$SSH_AUTH_SOCK" ]; then
@@ -208,15 +207,14 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
   else
     export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
     mkdir -p "$HOME/.ssh"
-    if ! ssh-add -l >/dev/null 2>&1; then
-      ssh_add_status=$?
-      if [ "$ssh_add_status" -eq 2 ]; then
-        rm -f "$SSH_AUTH_SOCK"
-        unset SSH_AGENT_PID
-        eval "$(ssh-agent -s -a "$SSH_AUTH_SOCK")" >/dev/null
-      fi
-      unset ssh_add_status
+    ssh-add -l >/dev/null 2>&1
+    ssh_add_status=$?
+    if [ "$ssh_add_status" -eq 2 ]; then
+      rm -f "$SSH_AUTH_SOCK"
+      unset SSH_AGENT_PID
+      eval "$(ssh-agent -s -a "$SSH_AUTH_SOCK")" >/dev/null
     fi
+    unset ssh_add_status
   fi
 fi
 
