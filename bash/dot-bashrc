@@ -213,6 +213,7 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
       rm -f "$SSH_AUTH_SOCK"
       unset SSH_AGENT_PID
       eval "$(ssh-agent -s -a "$SSH_AUTH_SOCK")" >/dev/null
+      ssh-add < /dev/null >/dev/null 2>&1
     fi
     unset ssh_add_status
   fi
