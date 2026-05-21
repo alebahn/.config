@@ -3,6 +3,7 @@
 -- Add any additional options here
 vim.opt.relativenumber = true
 vim.g.maplocalleader = "\\"
+vim.g.autoformat = false
 
 vim.filetype.add({
   extension = {
