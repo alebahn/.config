@@ -22,4 +22,5 @@ tmux/plugins/*
 !Code
 !Code/User
 !Code/User/*
-
+!hypr
+!hypr/**

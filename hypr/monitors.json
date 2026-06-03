@@ -1,0 +1,37 @@
+{
+  "workspaces": [
+    {
+      "name": "Default",
+      "monitors": {
+        "eDP-2": {
+          "resolution": "1920x1200",
+          "refresh_rate": 120.003,
+          "scale": 1.0,
+          "rotation": 0,
+          "position_x": 5120,
+          "position_y": 0,
+          "is_primary": false
+        },
+        "desc:BNQ BenQ GW2765 F2K00445019": {
+          "resolution": "2560x1440",
+          "refresh_rate": 59.951,
+          "scale": 1.0,
+          "rotation": 0,
+          "position_x": 0,
+          "position_y": 0,
+          "is_primary": false
+        },
+        "desc:BNQ BenQ GW2765 D1K05548019": {
+          "resolution": "2560x1440",
+          "refresh_rate": 59.951,
+          "scale": 1.0,
+          "rotation": 0,
+          "position_x": 2560,
+          "position_y": 0,
+          "is_primary": true
+        }
+      }
+    }
+  ],
+  "active_workspace": 0
+}
