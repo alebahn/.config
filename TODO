@@ -1,2 +1,1 @@
 Git integration (vim-fugitive?)
-Make neovim close nvim-tree if it is last buffer

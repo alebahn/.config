@@ -24,3 +24,5 @@ tmux/plugins/*
 !Code/User/*
 !hypr
 !hypr/**
+!uwsm
+!uwsm/*
