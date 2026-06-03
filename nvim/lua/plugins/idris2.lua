@@ -1,7 +1,30 @@
 local function idris_code_action(action)
   return function()
+    vim.cmd("silent write")
     require("idris2.code_action")[action]()
   end
+end
+
+local idris_implicits_toggle
+
+local function get_idris_implicits_toggle()
+  if idris_implicits_toggle then
+    return idris_implicits_toggle
+  end
+
+  idris_implicits_toggle = Snacks.toggle({
+    id = "idris_implicits",
+    name = "Idris Implicits",
+    get = function()
+      return vim.b.idris_implicits_visible == true
+    end,
+    set = function(state)
+      require("idris2")[state and "show_implicits" or "hide_implicits"]()
+      vim.b.idris_implicits_visible = state
+    end,
+  })
+
+  return idris_implicits_toggle
 end
 
 return {
@@ -32,6 +55,8 @@ return {
           vim.keymap.set("n", "<localleader>l", idris_code_action("make_lemma"), opts("Make lemma"))
           vim.keymap.set("n", "<localleader>f", idris_code_action("refine_hole"), opts("Refine item"))
           vim.keymap.set("n", "<localleader>s", idris_code_action("expr_search"), opts("Proof search"))
+          vim.b[event.buf].idris_implicits_visible = false
+          get_idris_implicits_toggle():map("<localleader>oi", opts("Toggle Idris Implicits"))
         end,
       })
     end,
