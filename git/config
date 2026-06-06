@@ -9,8 +9,8 @@
     co  = checkout
     sw  = switch
     df  = diff
-    l   = log
-    lp  = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    l   = log --reverse
+    lp  = log --reverse --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     st = "!f() { \
                 git -c color.status=always status \"$@\" \
                   | awk 'BEGIN { n=0 } \
@@ -20,6 +20,8 @@
                          { print $0 }'; \
                }; f"
 	run = !sh -c 'exec \"$@\"' -
+[core]
+    pager = cat
 [color]
     ui = true
 [init]
