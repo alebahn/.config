@@ -204,5 +204,17 @@ show_virtual_env() {
   fi
 }
 
+if command -v npm >/dev/null 2>&1; then
+    export NPM_CONFIG_PREFIX="$HOME/.local/npm-global"
+    mkdir -p "$NPM_CONFIG_PREFIX/bin"
+    export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
+fi
+
+export EDITOR=nvim
+
 export -f show_virtual_env
 PS1='$(show_virtual_env)'$PS1
+
+# Created by `pipx` on 2026-01-26 23:03:38
+export PATH="$PATH:/home/alebahn/.local/bin"
+export PATH=$PATH:$HOME/.local/bin
