@@ -3,7 +3,10 @@
 
 [[ $- != *i* ]] && return
 
+[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
+
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+export CODEX_HOME="$XDG_CONFIG_HOME/codex"
 
 # All the default Omarchy aliases and functions
 # (don't mess with these directly, just overwrite them here!)

@@ -26,3 +26,7 @@ tmux/plugins/*
 !hypr/**
 !uwsm
 !uwsm/*
+!codex
+!codex/skills
+!codex/skills/**
+

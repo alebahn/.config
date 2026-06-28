@@ -1,0 +1,4 @@
+interface:
+  display_name: "Preorder Reasoning"
+  short_description: "Idris preorder reasoning syntax notes"
+  default_prompt: "Use $preorder-reasoning to explain or apply Idris preorder reasoning syntax."
