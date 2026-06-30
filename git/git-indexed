@@ -18,20 +18,53 @@ args=()
 for arg in "$@"; do
   #if arg is numeric, convert it to a file:
   if [[ "$arg" =~ ^[0-9]+$ ]]; then
-    file=$(
+    if ! file=$(
       git status --porcelain -z | \
         awk -v RS='\0' -v arg="$arg" '
-          BEGIN { ns = nu = nt = 0 }
-          /^[MTADRCU]/  { staged[++ns]    = substr($0, 4) }
-          /^.[MTADRCU]/ { unstaged[++nu]  = substr($0, 4) }
-          /^\?\?/       { untracked[++nt] = substr($0, 4) }
+          {
+            if (skip_next_path) {
+              skip_next_path = 0
+              next
+            }
+
+            status = substr($0, 1, 2)
+            path = substr($0, 4)
+            x = substr(status, 1, 1)
+            y = substr(status, 2, 1)
+
+            if (x ~ /^[RC]$/) {
+              skip_next_path = 1
+            }
+
+            if (status == "??") {
+              untracked[++nt] = path
+              next
+            }
+
+            if (status ~ /^(DD|AU|UD|UA|DU|AA|UU)$/) {
+              unmerged[++nm] = path
+              next
+            }
+
+            if (x ~ /^[MTADRC]$/) {
+              staged[++ns] = path
+            }
+            if (y ~ /^[MTD]$/) {
+              unstaged[++nu] = path
+            }
+          }
           END {
             count = 0
             for (i = 1; i <= ns; i++) { if (++count == arg) { print staged[i]; exit } }
+            for (i = 1; i <= nm; i++) { if (++count == arg) { print unmerged[i]; exit } }
             for (i = 1; i <= nu; i++) { if (++count == arg) { print unstaged[i]; exit } }
             for (i = 1; i <= nt; i++) { if (++count == arg) { print untracked[i]; exit } }
+            exit 1
           }'
-        )
+        ); then
+      echo "git-indexed: no file for index $arg" >&2
+      exit 1
+    fi
 
     args+=("$root_path/$file")
   #otherwise, pass it through as is
