@@ -4,6 +4,8 @@
 vim.opt.relativenumber = true
 vim.g.maplocalleader = "\\"
 vim.g.autoformat = false
+vim.o.exrc = true
+vim.o.secure = true
 
 vim.filetype.add({
   extension = {
