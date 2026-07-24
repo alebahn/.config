@@ -11,6 +11,20 @@
     df  = diff
     l   = log
     lp  = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    wip = "!f() { \
+        if test \"$(git log -1 --format=%s 2>/dev/null)\" = \"WIP\"; then \
+            git commit -a --amend --no-edit; \
+        else \
+            git commit -am \"WIP\"; \
+        fi; \
+    }; f"
+    piw = "!f() { \
+        test \"$(git log -1 --format=%s)\" = \"WIP\" || { \
+            echo \"HEAD is not a WIP commit\" >&2; \
+            return 1; \
+        }; \
+        git reset --mixed HEAD^; \
+    }; f"
     st = "!f() { \
                 git -c color.status=always status \"$@\" \
                   | awk 'BEGIN { n=0 } \
